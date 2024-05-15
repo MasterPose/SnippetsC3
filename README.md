@@ -8,7 +8,7 @@
 
 |                                            File                                             |              Description              | Worker Mode |
 |:-------------------------------------------------------------------------------------------:|:-------------------------------------:|:-----------:|
-| [getRuntime.js](https://raw.githubusercontent.com/MasterPose/SnippetsC3/main/getRuntime.js) | Gets the internal C3 runtime instance |      x      |
+| [getRuntime.js](https://raw.githubusercontent.com/MasterPose/SnippetsC3/main/getRuntime.js) | Gets the internal C3 runtime instance |      ✅      |
 
 _Check the demo of each script by downloading the .c3p file of the same name._
 
