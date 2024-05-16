@@ -1,4 +1,8 @@
-if (globalThis._C3_InitRuntime === undefined) {
+setTimeout(() => {
+    if (globalThis._C3_InitRuntime !== undefined) {
+        return;
+    }
+
     globalThis._C3_InitRuntime = self.C3_InitRuntime;
 
     self.C3_InitRuntime = async function (...args) {
@@ -9,7 +13,7 @@ if (globalThis._C3_InitRuntime === undefined) {
         });
         return promise;
     }
-}
+}, 0);
 
 async function getRuntime() {
     if (globalThis._C3_RealRuntime !== undefined) {
@@ -28,4 +32,4 @@ async function getRuntime() {
     });
 }
 
-export default getRuntime;
+globalThis.getRuntime = getRuntime;
