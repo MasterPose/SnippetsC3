@@ -1,22 +1,22 @@
 // @ts-nocheck
-const setRealRuntime = (v) => globalThis._C3_RealRuntime = v;
+const setRealRuntime = (v) => globalThis["_C3_RealRuntime"] = v;
 const disposeRealRuntime = () => {
-    if (!globalThis._C3_RealRuntimeShouldDispose) return;
+    if (!globalThis["_C3_RealRuntimeShouldDispose"]) return;
 
     setInterval(() => {
-        if (globalThis._C3_RealRuntime) delete globalThis._C3_RealRuntime;
+        if (globalThis["_C3_RealRuntime"]) delete globalThis["_C3_RealRuntime"];
     }, 1);
 }
 
 /**
  * Synchronous way to get the real runtime. Run this only after being sure of running `resolveRuntime(false)` for the first time
  */
-const getRealRuntime = () => globalThis._C3_RealRuntime;
+const getRealRuntime = () => globalThis["_C3_RealRuntime"];
 
-globalThis._C3_CreateRuntime = self.C3_CreateRuntime;
+globalThis["_C3_CreateRuntime"] = self["C3_CreateRuntime"];
 
-self.C3_CreateRuntime = function (...args) {
-    const runtime = globalThis._C3_CreateRuntime(...args);
+self["C3_CreateRuntime"] = function (...args) {
+    const runtime = globalThis["_C3_CreateRuntime"](...args);
 
     // @ts-ignore
     delete globalThis["_C3_CreateRuntime"]; // Dispose
@@ -33,7 +33,7 @@ self.C3_CreateRuntime = function (...args) {
 async function resolveRuntime(dispose = true) {
     const runtime = getRealRuntime();
 
-    globalThis._C3_RealRuntimeShouldDispose = dispose;
+    globalThis["_C3_RealRuntimeShouldDispose"] = dispose;
 
     if (runtime && dispose) {
         disposeRealRuntime();
@@ -52,7 +52,7 @@ async function resolveRuntime(dispose = true) {
 
             if (!runtime) return tries++;
 
-            globalThis._C3_RealRuntimeShouldDispose = dispose;
+            globalThis["_C3_RealRuntimeShouldDispose"] = dispose;
 
             if (dispose) disposeRealRuntime();
 
